@@ -5,9 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PdfAuthorVerifier"
         mc:Ignorable="d"
-        Title="Analyze Pdf files (PDF Author Verifier) // Вася (+371 29 47 91 90)" Width="1024" Height="350" MinWidth="650" MinHeight="350" WindowStartupLocation="CenterScreen">
+        Title="Analyze Pdf files (PDF Author Verifier) // Вася (+371 29 47 91 90)" Width="1280" Height="800" MinWidth="650" MinHeight="350" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
+        <Style x:Key="DataGridCellWithDate" TargetType="DataGridCell">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding AdHock_Item1}" Value="True">
+                    <Setter Property="Background" Value="Yellow"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding AdHock_Item2}" Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding AdHock_Item3}" Value="True">
+                    <Setter Property="Background" Value="Red"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding AdHock_Item4}" Value="True">
+                    <Setter Property="Background" Value="LightGreen"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding AdHock_Item5}" Value="True">
+                    <Setter Property="Background" Value="DarkRed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="DataGridCellWithAuthor" TargetType="DataGridCell">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding AdHock_Item6}" Value="True">
+                    <Setter Property="Background" Value="GreenYellow"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     
     <Grid>
@@ -27,15 +54,15 @@
 
                 <DataGridTextColumn Header="Title" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmed}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=Title}" MinWidth="75" Width="4*"/>
 
-                <DataGridTextColumn Header="Author" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmed}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=Author}" MinWidth="75" Width="3*"/>
+                <DataGridTextColumn Header="Author" CellStyle="{StaticResource ResourceKey=DataGridCellWithAuthor}" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmed}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=Author}" MinWidth="75" Width="3*"/>
 
                 <DataGridTextColumn Header="Producer" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmed}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=Producer}" MinWidth="75" Width="2*"/>
 
                 <DataGridTextColumn Header="Publisher" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmed}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=Publisher}" MinWidth="75" Width="2*"/>
 
-                <DataGridTextColumn Header="Created" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=CreationDate, StringFormat={StaticResource ResourceKey=DateFormat}}" MinWidth="75" Width="2*"/>
+                <DataGridTextColumn Header="Created" CellStyle="{StaticResource ResourceKey=DataGridCellWithDate}" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=CreationDate, StringFormat={StaticResource ResourceKey=DateFormat}}" MinWidth="75" Width="2*"/>
 
-                <DataGridTextColumn Header="Changed" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=ModificationDate, StringFormat={StaticResource ResourceKey=DateFormat}}" MinWidth="75" Width="2*"/>
+                <DataGridTextColumn Header="Changed" CellStyle="{StaticResource ResourceKey=DataGridCellWithDate}" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=ModificationDate, StringFormat={StaticResource ResourceKey=DateFormat}}" MinWidth="75" Width="2*"/>
 
                 <DataGridTextColumn Header="Status" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=StatusAsText}" MinWidth="75" Width="1*"/>
             </DataGrid.Columns>

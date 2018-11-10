@@ -36,7 +36,11 @@ namespace PdfAuthorVerifier.Types
         public string Author
         {
             get { return GetValue(() => Author); }
-            set { SetValue(() => Author, value); }
+            set
+            {
+                SetValue(() => Author, value);
+                NotifyPropertyChanged("AdHock_Item6");
+            }
         }
         /// <summary>
         ///     Value from PDF
@@ -68,7 +72,15 @@ namespace PdfAuthorVerifier.Types
         public DateTime? CreationDate
         {
             get { return GetValue(() => CreationDate); }
-            set { SetValue(() => CreationDate, value); }
+            set
+            {
+                SetValue(() => CreationDate, value);
+                NotifyPropertyChanged("AdHock_Item1");
+                NotifyPropertyChanged("AdHock_Item2");
+                NotifyPropertyChanged("AdHock_Item3");
+                NotifyPropertyChanged("AdHock_Item4");
+                NotifyPropertyChanged("AdHock_Item5");
+            }
         }
         /// <summary>
         ///     Value from PDF
@@ -76,7 +88,104 @@ namespace PdfAuthorVerifier.Types
         public DateTime? ModificationDate
         {
             get { return GetValue(() => ModificationDate); }
-            set { SetValue(() => ModificationDate, value); }
+            set
+            {
+                SetValue(() => ModificationDate, value);
+                NotifyPropertyChanged("AdHock_Item1");
+                NotifyPropertyChanged("AdHock_Item2");
+                NotifyPropertyChanged("AdHock_Item3");
+                NotifyPropertyChanged("AdHock_Item4");
+                NotifyPropertyChanged("AdHock_Item5");
+            }
+        }
+
+        /// <summary>
+        ///     Yellow
+        /// </summary>
+        public bool AdHock_Item1
+        {
+            get
+            {
+                return CreationDate != null && ModificationDate != null && CreationDate > ModificationDate;
+            }
+            set { SetValue(() => AdHock_Item1, value); }
+        }
+
+        /// <summary>
+        ///     Green
+        /// </summary>
+        public bool AdHock_Item2
+        {
+            get
+            {
+                return CreationDate != null && ModificationDate != null && CreationDate < ModificationDate;
+            }
+            set { SetValue(() => AdHock_Item2, value); }
+        }
+
+        /// <summary>
+        ///     Red
+        /// </summary>
+        public bool AdHock_Item3
+        {
+            get
+            {
+                return CreationDate != null && ModificationDate != null && CreationDate > ModificationDate;
+            }
+            set { SetValue(() => AdHock_Item3, value); }
+        }
+
+        /// <summary>
+        ///     Light Green
+        /// </summary>
+        public bool AdHock_Item4
+        {
+            get
+            {
+                return CreationDate != null && ModificationDate != null && CreationDate == ModificationDate;
+            }
+            set { SetValue(() => AdHock_Item4, value); }
+        }
+
+        /// <summary>
+        ///     Dark Red
+        /// </summary>
+        public bool AdHock_Item5
+        {
+            get
+            {
+                return CreationDate != null && ModificationDate != null && CreationDate > DateTime.Now || ModificationDate > DateTime.Now;
+            }
+            set { SetValue(() => AdHock_Item5, value); }
+        }
+
+        public bool AdHock_Item6
+        {
+            get
+            {
+                int c = 0;
+                if (!String.IsNullOrEmpty(Author))
+                {
+                    string result = Author.Replace(".", "").Replace(",", "");
+
+                    string[] results = result.Split(" ".ToCharArray());
+
+                    foreach (string s in results)
+                    {
+                        if (s.Length > 1)
+                        {
+                            c++;
+                        }
+                        else
+                        {
+                            c--;
+                        }
+                    }
+                }
+
+                return c > 1;
+            }
+            set { SetValue(() => AdHock_Item6, value); }
         }
     }
 }

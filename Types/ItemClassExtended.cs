@@ -19,8 +19,9 @@ namespace PdfAuthorVerifier.Types
             set
             {
                 SetValue(() => Status, value);
-                // Yes, we need this
-                StatusAsText = value.ToString();
+                NotifyPropertyChanged("StatusAsText");
+                //// Yes, we need this
+                //StatusAsText = value.ToString();
             }
         }
 
