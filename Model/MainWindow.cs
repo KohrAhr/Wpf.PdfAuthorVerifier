@@ -28,7 +28,7 @@ namespace PdfAuthorVerifier.ViewModels
             {
                 SetValue(() => RootFolder, value);
                 // Да, нам без разницы .....
-                if (!String.IsNullOrEmpty(value) && Directory.Exists(value))
+                if (!String.IsNullOrEmpty(value)/* && ((value.Count() == 1 && Directory.Exists(value) || value.Count() > 1)) */)
                 {
                     EnDsCommands(CommandSet.csScan);
                 }

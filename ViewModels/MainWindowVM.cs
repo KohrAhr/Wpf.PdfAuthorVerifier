@@ -58,7 +58,11 @@ namespace PdfAuthorVerifier.ViewModels
             EnDsCommands(CommandSet.csRootEnabled);
 
             // Специально после EnDsCommands
-            RootFolder = @"G:\Docs\Books\Programming\C Sharp\";
+            RootFolder = @"G:\Docs\Books\Programming\C Sharp\" + Environment.NewLine + 
+                @"G:\Docs\Books\Programming\FoxPro\" + Environment.NewLine +
+                @"G:\Docs\Books\Programming\Delphi\" + Environment.NewLine +
+                @"G:\Docs\Books\Programming\WPF\" +Environment.NewLine +
+                @"G:\Docs\Books\Programming\SQL\";
         }
 
         #region Commands implementation
@@ -71,29 +75,32 @@ namespace PdfAuthorVerifier.ViewModels
         {
             EnDsCommands(CommandSet.csAllDisabled);
 
-            string[] files = null;
-
             if (String.IsNullOrEmpty(RootFolder))
             {
                 return;
             }
 
-            if (!RootFolder.EndsWith(Path.DirectorySeparatorChar.ToString()))
-            {
-                RootFolder += Path.DirectorySeparatorChar.ToString();
-            }
+            string[] folders = RootFolder.Split(Environment.NewLine.ToCharArray());
 
-            Task task = new Task(() =>
+            foreach (string folder in folders)
             {
-                // Find all PDF files starting from location
-                files = Directory.GetFiles(RootFolder, "*.PDF", SearchOption.AllDirectories);
-            });
+                string workingFolder = folder.Trim();
 
-            task.Start();
-            task.ContinueWith(t => 
-            {
-                try
+                if (String.IsNullOrEmpty(folder))
                 {
+                    continue;
+                }
+
+                if (!workingFolder.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                {
+                    workingFolder += Path.DirectorySeparatorChar.ToString();
+                }
+
+                Task task = new Task(() =>
+                {
+                    // Find all PDF files starting from location
+                    string[] files = Directory.GetFiles(workingFolder, "*.PDF", SearchOption.AllDirectories);
+
                     // All to list
                     if (files == null)
                     {
@@ -102,24 +109,21 @@ namespace PdfAuthorVerifier.ViewModels
 
                     foreach (string file in files)
                     {
-                        if (Items.Where(x => x.FileName == file).Count() == 0)
+                        App.Current.Dispatcher.Invoke(() =>
                         {
-                            App.Current.Dispatcher.Invoke(() =>
+                            if (Items.Where(x => x.FileName == file).Count() == 0)
                             {
                                 Items.Add(
                                     new ItemType { FileName = file, TypeOfItem = 0, Status = StatusType.stNew }
                                 );
-                            });
-                        }
+                            }
+                        });
                     }
+                });
+                task.Start();
+            }
 
-                    ProgressStatus = "Found " + files.Count().ToString();
-                }
-                finally
-                {
-                    EnDsCommands(CommandSet.csScan);
-                }
-            });
+            EnDsCommands(CommandSet.csScan);
         }
 
         private void AnalyzeFilesAction(Object o)
