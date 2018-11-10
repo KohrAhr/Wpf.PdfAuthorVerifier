@@ -113,6 +113,7 @@ namespace PdfAuthorVerifier.ViewModels
 
             ProgressPosition = Items.Count();
             ProgressMax = Items.Count();
+            ProgressStatus = "Running...";
 
             foreach (ItemType file in Items)
             {
@@ -217,12 +218,14 @@ namespace PdfAuthorVerifier.ViewModels
             {
                 ProgressPosition = 0;
                 EnDsCommands(CommandSet.csScan);
+                ProgressStatus = "Completed " + ProgressMax + "!";
             }
         }
 
         private void ClearListOfFilesAction(Object o)
         {
             Items.Clear();
+            ProgressStatus = "";
             EnDsCommands(CommandSet.csScan);
         }
 
