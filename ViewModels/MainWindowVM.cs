@@ -123,6 +123,7 @@ namespace PdfAuthorVerifier.ViewModels
                     file.Status = StatusType.stInProgress;
 
                     PdfFunctions pdfFunctions = new PdfFunctions();
+                    DateTimeFunctions dateTimeFunctions = new DateTimeFunctions();
 
                     PdfReader pdfFile = null;
                     try
@@ -177,7 +178,7 @@ namespace PdfAuthorVerifier.ViewModels
 
                             if (!String.IsNullOrEmpty(value))
                             {
-                                file.CreationDate = value;
+                                file.CreationDate = dateTimeFunctions.FixDateTime(value);
                             }
 
                             // 
@@ -185,7 +186,7 @@ namespace PdfAuthorVerifier.ViewModels
 
                             if (!String.IsNullOrEmpty(value))
                             {
-                                file.ModificationDate = value;
+                                file.ModificationDate = dateTimeFunctions.FixDateTime(value);
                             }
 
                             file.Status = StatusType.stDone;

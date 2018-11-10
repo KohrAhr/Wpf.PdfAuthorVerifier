@@ -65,7 +65,7 @@ namespace PdfAuthorVerifier.Types
         /// <summary>
         ///     Value from PDF
         /// </summary>
-        public string CreationDate
+        public DateTime? CreationDate
         {
             get { return GetValue(() => CreationDate); }
             set { SetValue(() => CreationDate, value); }
@@ -73,7 +73,7 @@ namespace PdfAuthorVerifier.Types
         /// <summary>
         ///     Value from PDF
         /// </summary>
-        public string ModificationDate
+        public DateTime? ModificationDate
         {
             get { return GetValue(() => ModificationDate); }
             set { SetValue(() => ModificationDate, value); }

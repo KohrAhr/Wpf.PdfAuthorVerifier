@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:PdfAuthorVerifier.Resources">
+                    xmlns:local="clr-namespace:PdfAuthorVerifier.Resources"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!-- GLOBAL STYLES -->
 
@@ -37,4 +38,7 @@
     <Style x:Key="HeaderStyleCentered" TargetType="DataGridColumnHeader">
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>
+
+    <system:String x:Key="DateFormat">yyyy/MMM/dd HH:MM:ss</system:String>
+
 </ResourceDictionary>

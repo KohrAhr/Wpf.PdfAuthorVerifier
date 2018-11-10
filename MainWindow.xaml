@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PdfAuthorVerifier"
         mc:Ignorable="d"
-        Title="Analyze Pdf files (PDF Author Verifier) // Вася (+371 29 47 91 90)" Width="860" Height="350" MinWidth="650" MinHeight="350" WindowStartupLocation="CenterScreen">
+        Title="Analyze Pdf files (PDF Author Verifier) // Вася (+371 29 47 91 90)" Width="1024" Height="350" MinWidth="650" MinHeight="350" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
     </Window.Resources>
@@ -32,9 +32,9 @@
 
                 <DataGridTextColumn Header="Publisher" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmed}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=Publisher}" MinWidth="75" Width="2*"/>
 
-                <DataGridTextColumn Header="Created" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=CreationDate}" MinWidth="75" Width="2*"/>
+                <DataGridTextColumn Header="Created" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=CreationDate, StringFormat={StaticResource ResourceKey=DateFormat}}" MinWidth="75" Width="2*"/>
 
-                <DataGridTextColumn Header="Changed" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=ModificationDate}" MinWidth="75" Width="2*"/>
+                <DataGridTextColumn Header="Changed" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=ModificationDate, StringFormat={StaticResource ResourceKey=DateFormat}}" MinWidth="75" Width="2*"/>
 
                 <DataGridTextColumn Header="Status" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=StatusAsText}" MinWidth="75" Width="1*"/>
             </DataGrid.Columns>
