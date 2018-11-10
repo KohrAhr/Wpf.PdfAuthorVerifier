@@ -58,7 +58,7 @@ namespace PdfAuthorVerifier.ViewModels
             EnDsCommands(CommandSet.csRootEnabled);
 
             // Специально после EnDsCommands
-            RootFolder = @"G:\Docs\Books\Programming\";
+            RootFolder = @"G:\Docs\Books\Programming\C Sharp\";
         }
 
         #region Commands implementation

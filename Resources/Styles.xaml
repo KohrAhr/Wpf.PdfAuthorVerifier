@@ -39,6 +39,6 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>
 
-    <system:String x:Key="DateFormat">yyyy/MMM/dd HH:MM:ss</system:String>
+    <system:String x:Key="DateFormat">dd/MMM/yyyy HH:mm:ss</system:String>
 
 </ResourceDictionary>

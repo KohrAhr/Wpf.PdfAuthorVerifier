@@ -75,11 +75,11 @@ namespace PdfAuthorVerifier.Types
             set
             {
                 SetValue(() => CreationDate, value);
-                NotifyPropertyChanged("AdHock_Item1");
-                NotifyPropertyChanged("AdHock_Item2");
-                NotifyPropertyChanged("AdHock_Item3");
-                NotifyPropertyChanged("AdHock_Item4");
-                NotifyPropertyChanged("AdHock_Item5");
+                //NotifyPropertyChanged("AdHock_Item1");
+                //NotifyPropertyChanged("AdHock_Item2");
+                //NotifyPropertyChanged("AdHock_Item3");
+                //NotifyPropertyChanged("AdHock_Item4");
+                //NotifyPropertyChanged("AdHock_Item5");
             }
         }
         /// <summary>
@@ -118,7 +118,8 @@ namespace PdfAuthorVerifier.Types
         {
             get
             {
-                return CreationDate != null && ModificationDate != null && CreationDate < ModificationDate;
+                bool result = CreationDate != null && ModificationDate != null && CreationDate < ModificationDate;
+                return result;
             }
             set { SetValue(() => AdHock_Item2, value); }
         }
@@ -175,10 +176,6 @@ namespace PdfAuthorVerifier.Types
                         if (s.Length > 1)
                         {
                             c++;
-                        }
-                        else
-                        {
-                            c--;
                         }
                     }
                 }

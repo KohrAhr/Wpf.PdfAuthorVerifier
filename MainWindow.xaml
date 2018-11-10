@@ -14,7 +14,7 @@
                     <Setter Property="Background" Value="Yellow"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding AdHock_Item2}" Value="True">
-                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Background" Value="LightBlue"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding AdHock_Item3}" Value="True">
                     <Setter Property="Background" Value="Red"/>
