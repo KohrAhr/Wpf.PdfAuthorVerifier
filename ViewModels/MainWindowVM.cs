@@ -48,7 +48,6 @@ namespace PdfAuthorVerifier.ViewModels
             ExportResultCommand = new RelayCommand(ExportResultAction);
         }
 
-
         private void InitData()
         {
             Items = new ObservableCollection<ItemType>();
