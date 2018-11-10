@@ -12,15 +12,16 @@
     
     <Grid>
         <Label Style="{StaticResource ResourceKey=LabelRegular}" Content="Root folder:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox MaxLength="500" Margin="115,12,10,0" TextWrapping="Wrap" Text="{Binding Path=RootFolder, Mode=TwoWay}" IsEnabled="{Binding Path=IsEnabled_SearchForFilesCommand}" VerticalAlignment="Top"/>
+        <TextBox MaxLength="500" Margin="115,12,10,0" TextWrapping="Wrap" Text="{Binding Path=RootFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=IsEnabled_RootFolder}" VerticalAlignment="Top"/>
         <Button Content="Scan folder and subfolders for PDF files" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="250" IsEnabled="{Binding Path=IsEnabled_SearchForFilesCommand}" Command="{Binding Path=SearchForFilesCommand}" />
         <Button Content="Clear" Command="{Binding Path=ClearListOfFilesCommand}" IsEnabled="{Binding Path=IsEnabled_ClearCommand}" HorizontalAlignment="Left" Margin="265,41,0,0" VerticalAlignment="Top" Width="100"/>
         <Button Content="Analyze files" Command="{Binding Path=AnalyzeFilesCommand}" IsEnabled="{Binding Path=IsEnabled_AnalyzeFilesCommand}" HorizontalAlignment="Left" Margin="370,41,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Export to CSV" Command="{Binding Path=ExportResultCommand}" IsEnabled="{Binding Path=IsEnabled_ExportResultCommand}" HorizontalAlignment="Left" Margin="475,41,0,0" VerticalAlignment="Top" Width="100"/>
 
         <ProgressBar Value="{Binding Path=ProgressPosition}" Maximum="{Binding Path=ProgressMax}" Height="10" Margin="10,68,10,0" VerticalAlignment="Top"/>
         <Label Content="{Binding Path=ProgressStatus}" Margin="10,83,10,0" VerticalAlignment="Top"/>
 
-        <DataGrid Style="{StaticResource ResourceKey=DataGridMain}" ItemsSource="{Binding Path=Items}" Margin="10,114,10,10">
+        <DataGrid x:Name="dgMain" Style="{StaticResource ResourceKey=DataGridMain}" ItemsSource="{Binding Path=Items}" Margin="10,114,10,10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="File name" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmed}" Binding="{Binding Path=FileName}" MinWidth="75" Width="7*"/>
 

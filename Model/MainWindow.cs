@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,19 @@ namespace PdfAuthorVerifier.ViewModels
         public string RootFolder
         {
             get { return GetValue(() => RootFolder); }
-            set { SetValue(() => RootFolder, value); }
+            set
+            {
+                SetValue(() => RootFolder, value);
+                // Да, нам без разницы .....
+                if (!String.IsNullOrEmpty(value) && Directory.Exists(value))
+                {
+                    EnDsCommands(CommandSet.csScan);
+                }
+                else
+                {
+                    EnDsCommands(CommandSet.csRootEnabled);
+                }
+            }
         }
 
         public bool IsEnabled_SearchForFilesCommand
@@ -36,6 +49,18 @@ namespace PdfAuthorVerifier.ViewModels
         {
             get { return GetValue(() => IsEnabled_ClearCommand); }
             set { SetValue(() => IsEnabled_ClearCommand, value); }
+        }
+
+        public bool IsEnabled_RootFolder
+        {
+            get { return GetValue(() => IsEnabled_RootFolder); }
+            set { SetValue(() => IsEnabled_RootFolder, value); }
+        }
+
+        public bool IsEnabled_ExportResultCommand
+        {
+            get { return GetValue(() => IsEnabled_ExportResultCommand); }
+            set { SetValue(() => IsEnabled_ExportResultCommand, value); }
         }
 
         public bool IsEnabled_AnalyzeFilesCommand

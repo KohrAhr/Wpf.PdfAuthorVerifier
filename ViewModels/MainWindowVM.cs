@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using iTextSharp.text.pdf;
 using PdfAuthorVerifier.Core.Major;
@@ -20,7 +21,14 @@ namespace PdfAuthorVerifier.ViewModels
         public ICommand SearchForFilesCommand { get; set; }
         public ICommand AnalyzeFilesCommand { get; set; }
         public ICommand ClearListOfFilesCommand { get; set; }
+        public ICommand ExportResultCommand { get; set; }
         #endregion Commands
+
+        public DataGrid GetDataGrid()
+        {
+
+            return null;
+        }
 
         /// <summary>
         ///     Constructor
@@ -37,6 +45,7 @@ namespace PdfAuthorVerifier.ViewModels
             SearchForFilesCommand = new RelayCommand(SearchForFilesAction);
             AnalyzeFilesCommand = new RelayCommand(AnalyzeFilesAction);
             ClearListOfFilesCommand = new RelayCommand(ClearListOfFilesAction);
+            ExportResultCommand = new RelayCommand(ExportResultAction);
         }
 
 
@@ -44,15 +53,21 @@ namespace PdfAuthorVerifier.ViewModels
         {
             Items = new ObservableCollection<ItemType>();
 
-            RootFolder = @"G:\Docs\Books\Programming\";
-
             ProgressPosition = 0;
             ProgressMax = 1;
 
-            EnDsCommands(CommandSet.csScan);
+            EnDsCommands(CommandSet.csRootEnabled);
+
+            // Специально после EnDsCommands
+            RootFolder = @"G:\Docs\Books\Programming\";
         }
 
         #region Commands implementation
+        private void ExportResultAction(Object o)
+        {
+
+        }
+
         private void SearchForFilesAction(Object o)
         {
             EnDsCommands(CommandSet.csAllDisabled);
@@ -99,6 +114,7 @@ namespace PdfAuthorVerifier.ViewModels
                         }
                     }
 
+                    ProgressStatus = "Found " + files.Count().ToString();
                 }
                 finally
                 {
@@ -219,7 +235,7 @@ namespace PdfAuthorVerifier.ViewModels
             {
                 ProgressPosition = 0;
                 EnDsCommands(CommandSet.csScan);
-                ProgressStatus = "Completed " + ProgressMax + "!";
+                ProgressStatus = "Completed " + ProgressMax;
             }
         }
 
@@ -235,9 +251,13 @@ namespace PdfAuthorVerifier.ViewModels
         private enum CommandSet
         {
             /// <summary>
-            ///     All buttons disabled
+            ///     All buttons and textbox disabled
             /// </summary>
             csAllDisabled,
+            /// <summary>
+            ///     All buttons disabled but textbox enabled
+            /// </summary>
+            csRootEnabled,
             /// <summary>
             ///     Scan button enabled, Clear & Analyze enabled, if Items.Count > 0
             /// </summary>
@@ -264,7 +284,20 @@ namespace PdfAuthorVerifier.ViewModels
             {
                 case CommandSet.csAllDisabled:
                     {
+                        IsEnabled_RootFolder =
                         IsEnabled_SearchForFilesCommand =
+                        IsEnabled_ExportResultCommand = 
+                        IsEnabled_ClearCommand =
+                        IsEnabled_AnalyzeFilesCommand =
+                        IsEnabled_StopAnalyzeFilesCommand = false;
+
+                        break;
+                    }
+                case CommandSet.csRootEnabled:
+                    {
+                        IsEnabled_RootFolder = true;
+                        IsEnabled_SearchForFilesCommand =
+                        IsEnabled_ExportResultCommand =
                         IsEnabled_ClearCommand =
                         IsEnabled_AnalyzeFilesCommand =
                         IsEnabled_StopAnalyzeFilesCommand = false;
@@ -273,7 +306,9 @@ namespace PdfAuthorVerifier.ViewModels
                     }
                 case CommandSet.csScan:
                     {
+                        IsEnabled_RootFolder =
                         IsEnabled_SearchForFilesCommand = true;
+                        IsEnabled_ExportResultCommand =
                         IsEnabled_ClearCommand =
                         IsEnabled_AnalyzeFilesCommand = Items.Count > 0;
                         IsEnabled_StopAnalyzeFilesCommand = false;
@@ -282,8 +317,10 @@ namespace PdfAuthorVerifier.ViewModels
                     }
                 case CommandSet.csRun:
                     {
+                        IsEnabled_RootFolder =
                         IsEnabled_SearchForFilesCommand =
                         IsEnabled_StopAnalyzeFilesCommand = false;
+                        IsEnabled_ExportResultCommand =
                         IsEnabled_ClearCommand =
                         IsEnabled_AnalyzeFilesCommand = Items.Count > 0;
 
@@ -291,7 +328,9 @@ namespace PdfAuthorVerifier.ViewModels
                     }
                 case CommandSet.csStop:
                     {
+                        IsEnabled_RootFolder =
                         IsEnabled_SearchForFilesCommand =
+                        IsEnabled_ExportResultCommand =
                         IsEnabled_ClearCommand =
                         IsEnabled_AnalyzeFilesCommand = false;
                         IsEnabled_StopAnalyzeFilesCommand = true;
