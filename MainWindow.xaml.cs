@@ -1,6 +1,4 @@
-﻿using iTextSharp.text.pdf;
-using PdfAuthorVerifier.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -16,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PdfAuthorVerifier.ViewModels;
 
 namespace PdfAuthorVerifier
 {
