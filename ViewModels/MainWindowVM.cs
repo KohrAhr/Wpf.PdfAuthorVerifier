@@ -49,13 +49,13 @@ namespace PdfAuthorVerifier.ViewModels
             ProgressPosition = 0;
             ProgressMax = 1;
 
-            EnDsCommands(1);
+            EnDsCommands(CommandSet.csScan);
         }
 
         #region Commands implementation
         private void SearchForFilesAction(Object o)
         {
-            EnDsCommands(0);
+            EnDsCommands(CommandSet.csAllDisabled);
 
             string[] files = null;
 
@@ -102,14 +102,14 @@ namespace PdfAuthorVerifier.ViewModels
                 }
                 finally
                 {
-                    EnDsCommands(1);
+                    EnDsCommands(CommandSet.csScan);
                 }
             });
         }
 
         private void AnalyzeFilesAction(Object o)
         {
-            EnDsCommands(3);
+            EnDsCommands(CommandSet.csStop);
 
             ProgressPosition = Items.Count();
             ProgressMax = Items.Count();
@@ -216,33 +216,49 @@ namespace PdfAuthorVerifier.ViewModels
             if (Interlocked.Equals(TasksCounter, 0))
             {
                 ProgressPosition = 0;
-                EnDsCommands(1);
+                EnDsCommands(CommandSet.csScan);
             }
         }
 
         private void ClearListOfFilesAction(Object o)
         {
             Items.Clear();
-            EnDsCommands(1);
+            EnDsCommands(CommandSet.csScan);
         }
 
         #endregion Commands implementation
+
+        private enum CommandSet
+        {
+            /// <summary>
+            ///     All buttons disabled
+            /// </summary>
+            csAllDisabled,
+            /// <summary>
+            ///     Scan button enabled, Clear & Analyze enabled, if Items.Count > 0
+            /// </summary>
+            csScan,
+            /// <summary>
+            ///     Scan & Stop disabled, Clear & Analyze enabled, if Items.Count > 0
+            /// </summary>
+            csRun,
+            /// <summary>
+            ///     Scan, Clear, Analyze disabled, Stop enabled
+            /// </summary>
+            csStop
+        }
 
         /// <summary>
         ///     
         /// </summary>
         /// <param name="way">
-        ///     0 -- All buttons disabled
-        ///     1 -- Scan button enabled
-        ///     2 -- Scan & Stop disabled, Clear & Analyze enabled, if Items.Count > 0
-        ///     3 -- Scan, Clear, Analyze disabled, Stop enabled
         /// </param>
         /// <param name="status"></param>
-        private void EnDsCommands(int way)
+        private void EnDsCommands(CommandSet way)
         {
             switch (way)
             {
-                case 0:
+                case CommandSet.csAllDisabled:
                     {
                         IsEnabled_SearchForFilesCommand =
                         IsEnabled_ClearCommand =
@@ -251,7 +267,7 @@ namespace PdfAuthorVerifier.ViewModels
 
                         break;
                     }
-                case 1:
+                case CommandSet.csScan:
                     {
                         IsEnabled_SearchForFilesCommand = true;
                         IsEnabled_ClearCommand =
@@ -260,7 +276,7 @@ namespace PdfAuthorVerifier.ViewModels
 
                         break;
                     }
-                case 2:
+                case CommandSet.csRun:
                     {
                         IsEnabled_SearchForFilesCommand =
                         IsEnabled_StopAnalyzeFilesCommand = false;
@@ -269,7 +285,7 @@ namespace PdfAuthorVerifier.ViewModels
 
                         break;
                     }
-                case 3:
+                case CommandSet.csStop:
                     {
                         IsEnabled_SearchForFilesCommand =
                         IsEnabled_ClearCommand =
