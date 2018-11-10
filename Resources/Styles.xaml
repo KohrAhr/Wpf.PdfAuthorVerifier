@@ -4,7 +4,7 @@
 
     <!-- GLOBAL STYLES -->
 
-    <Style TargetType="DataGrid">
+    <Style x:Key="DataGridMain" TargetType="DataGrid">
         <Setter Property="HeadersVisibility" Value="Column"/>
         <Setter Property="SelectionMode" Value="Single"/>
         <Setter Property="VerticalScrollBarVisibility" Value="Visible"/>
@@ -12,10 +12,11 @@
         <Setter Property="AutoGenerateColumns" Value="False"/>
     </Style>
 
-    <Style TargetType="Label">
+    <Style x:Key="LabelRegular" TargetType="Label">
         <Setter Property="Width" Value="100"/>
     </Style>
 
+    <!-- DEFAULT HEIGHT FOR ALL TEXTBOX -->
     <Style TargetType="TextBox">
         <Setter Property="Height" Value="23"/>
     </Style>
@@ -25,7 +26,15 @@
         <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},Path=Content.Text}"/>
     </Style>
 
-    <Style TargetType="TextBlock">
+    <Style x:Key="TextBlockTrimmed" TargetType="TextBlock">
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+    </Style>
+
+    <Style x:Key="TextBlockTrimmedCentered" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=TextBlockTrimmed}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="HeaderStyleCentered" TargetType="DataGridColumnHeader">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>
 </ResourceDictionary>
