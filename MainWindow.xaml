@@ -17,70 +17,29 @@
         <Label Content="{Binding Path=ProgressStatus}" Margin="10,83,10,0" VerticalAlignment="Top"/>
 
         <DataGrid AutoGenerateColumns="False" HeadersVisibility="Column" SelectionMode="Single" ItemsSource="{Binding Path=Items}" VerticalScrollBarVisibility="Visible" IsReadOnly="True" Margin="10,114,10,10">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},Path=Content.Text}"/>
+                </Style>
+            </DataGrid.CellStyle>
+                    
             <DataGrid.Columns>
-                <DataGridTextColumn Header="File name" Binding="{Binding Path=FileName}" MinWidth="75" Width="7*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="{Binding Path=FileName}" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="File name" Binding="{Binding Path=FileName}" MinWidth="75" Width="7*"/>
 
-                <DataGridTextColumn Header="Title" Binding="{Binding Path=Title}" MinWidth="75" Width="4*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="{Binding Path=Title}" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="Title" Binding="{Binding Path=Title}" MinWidth="75" Width="4*"/>
 
-                <DataGridTextColumn Header="Author" Binding="{Binding Path=Author}" MinWidth="75" Width="3*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="{Binding Path=Author}" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="Author" Binding="{Binding Path=Author}" MinWidth="75" Width="3*"/>
 
-                <DataGridTextColumn Header="Producer" Binding="{Binding Path=Producer}" MinWidth="75" Width="2*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="{Binding Path=Producer}" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="Producer" Binding="{Binding Path=Producer}" MinWidth="75" Width="2*"/>
 
-                <DataGridTextColumn Header="Publisher" Binding="{Binding Path=Publisher}" MinWidth="75" Width="2*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="{Binding Path=Publisher}" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="Publisher" Binding="{Binding Path=Publisher}" MinWidth="75" Width="2*"/>
 
-                <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationDate}" MinWidth="75" Width="2*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="{Binding Path=CreationDate}" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="Created" Binding="{Binding Path=CreationDate}" MinWidth="75" Width="2*"/>
 
-                <DataGridTextColumn Header="Changed" Binding="{Binding Path=ModificationDate}" MinWidth="75" Width="2*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="{Binding Path=ModificationDate}" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="Changed" Binding="{Binding Path=ModificationDate}" MinWidth="75" Width="2*"/>
 
-                <DataGridTextColumn Header="Status" Binding="{Binding Path=StatusAsText}" MinWidth="75" Width="1*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="ToolTip" Value="{Binding Path=StatusAsText}" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Binding="{Binding Path=StatusAsText}" MinWidth="75" Width="1*"/>
+
             </DataGrid.Columns>
         </DataGrid>
 
