@@ -82,6 +82,8 @@ namespace PdfAuthorVerifier.ViewModels
 
             string[] folders = RootFolder.Split(Environment.NewLine.ToCharArray());
 
+            List<Task<string[]>> tasks = new List<Task<string[]>>();
+
             foreach (string folder in folders)
             {
                 string workingFolder = folder.Trim();
@@ -96,32 +98,33 @@ namespace PdfAuthorVerifier.ViewModels
                     workingFolder += Path.DirectorySeparatorChar.ToString();
                 }
 
-                Task task = new Task(() =>
+                Task<string[]> task = Task<string[]>.Factory.StartNew(() =>
                 {
                     // Find all PDF files starting from location
                     string[] files = Directory.GetFiles(workingFolder, "*.PDF", SearchOption.AllDirectories);
 
-                    // All to list
-                    if (files == null)
-                    {
-                        return;
-                    }
-
-                    foreach (string file in files)
-                    {
-                        App.Current.Dispatcher.Invoke(() =>
-                        {
-                            if (Items.Where(x => x.FileName == file).Count() == 0)
-                            {
-                                Items.Add(
-                                    new ItemType { FileName = file, TypeOfItem = 0, Status = StatusType.stNew }
-                                );
-                            }
-                        });
-                    }
+                    return files;
                 });
-                task.Start();
+                tasks.Add(task);
             }
+
+            int totalTasks = tasks.Count;
+            int completedTasks = 0;
+            do
+            {
+                int z = Task.WaitAny(tasks.ToArray());
+                completedTasks++;
+                Task<string[]> completedTask = tasks[z];
+                tasks.RemoveAt(z);
+                foreach (string value in completedTask.Result)
+                {
+                    if (Items.Where(x => x.FileName == value).Count() == 0)
+                    {
+                        Items.Add(new ItemType { FileName = value, Status = StatusType.stNew, TypeOfItem = PdfLocation.plFile });
+                    }
+                }
+            }
+            while (completedTasks != totalTasks);
 
             EnDsCommands(CommandSet.csScan);
         }
