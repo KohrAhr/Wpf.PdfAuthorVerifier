@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PdfAuthorVerifier.Functions;
+using PdfAuthorVerifier.Types;
 using PdfAuthorVerifier.ViewModels;
 
 namespace PdfAuthorVerifier
@@ -28,7 +31,7 @@ namespace PdfAuthorVerifier
         {
             InitializeComponent();
 
-            DataContext = new MainWindowVM();
+            DataContext = new MainWindowVM(dgMain);
         }
     }
 }

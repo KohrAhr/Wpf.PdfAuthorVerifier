@@ -48,7 +48,7 @@
         <ProgressBar Value="{Binding Path=ProgressPosition}" Maximum="{Binding Path=ProgressMax}" Height="10" Margin="10,123,10,0" VerticalAlignment="Top"/>
         <Label Content="{Binding Path=ProgressStatus}" Margin="10,138,10,0" VerticalAlignment="Top" Height="9"/>
 
-        <DataGrid x:Name="dgMain" Style="{StaticResource ResourceKey=DataGridMain}" ItemsSource="{Binding Path=Items}" Margin="10,166,10,10">
+        <DataGrid x:Name="dgMain" Style="{StaticResource ResourceKey=DataGridMain}" ItemsSource="{Binding Path=Items}" Margin="10,166,10,40">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="File name" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmed}" Binding="{Binding Path=FileName}" MinWidth="75" Width="7*"/>
 
@@ -67,9 +67,9 @@
                 <DataGridTextColumn Header="Status" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=StatusAsText}" MinWidth="75" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
-        
-        <TextBox HorizontalAlignment="Left" Margin="10,308,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="135,308,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <TextBox Margin="10,0,90,10" TextWrapping="Wrap" Text="{Binding Path=SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" VerticalAlignment="Bottom"/>
+        <Button Content="Search" Margin="0,0,10,10" Height="23" Command="{Binding Path=RunSearchCommand}" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>

@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="Core\Major\PropertyChangeNotification.cs" />
     <Compile Include="Core\Major\RelayCommand.cs" />
+    <Compile Include="Functions\Functions.DataGrid.cs" />
     <Compile Include="Functions\Functions.DateTime.cs" />
     <Compile Include="Functions\Functions.Pdf.cs" />
     <Compile Include="Model\MainWindow.cs" />

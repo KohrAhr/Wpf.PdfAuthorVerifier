@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using PdfAuthorVerifier.Core.Major;
 using PdfAuthorVerifier.Types;
 
@@ -14,6 +15,18 @@ namespace PdfAuthorVerifier.ViewModels
     {
         #region Data
         private int TasksCounter;
+
+        public DataGrid _DataGrid
+        {
+            get => GetValue(() => _DataGrid);
+            set => SetValue(() => _DataGrid, value);
+        } 
+
+        public string SearchQuery
+        {
+            get => GetValue(() => SearchQuery);
+            set => SetValue(() => SearchQuery, value);
+        }
 
         public ObservableCollection<ItemType> Items
         {

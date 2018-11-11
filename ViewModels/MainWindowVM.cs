@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -22,20 +21,17 @@ namespace PdfAuthorVerifier.ViewModels
         public ICommand AnalyzeFilesCommand { get; set; }
         public ICommand ClearListOfFilesCommand { get; set; }
         public ICommand ExportResultCommand { get; set; }
+        public ICommand RunSearchCommand { get; set; }
         #endregion Commands
-
-        public DataGrid GetDataGrid()
-        {
-
-            return null;
-        }
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public MainWindowVM()
+        public MainWindowVM(DataGrid dataGrid)
         {
             InitData();
+
+            _DataGrid = dataGrid;
 
             InitCommands();
         }
@@ -46,6 +42,7 @@ namespace PdfAuthorVerifier.ViewModels
             AnalyzeFilesCommand = new RelayCommand(AnalyzeFilesAction);
             ClearListOfFilesCommand = new RelayCommand(ClearListOfFilesAction);
             ExportResultCommand = new RelayCommand(ExportResultAction);
+            RunSearchCommand = new RelayCommand(RunSearchAction);
         }
 
         private void InitData()
@@ -69,6 +66,11 @@ namespace PdfAuthorVerifier.ViewModels
         private void ExportResultAction(Object o)
         {
 
+        }
+
+        private void RunSearchAction(Object o)
+        {
+            DataGridFunctions.ApplyFilterOnDataGrid(SearchQuery, _DataGrid);
         }
 
         private void SearchForFilesAction(Object o)
