@@ -165,6 +165,13 @@ namespace PdfAuthorVerifier.ViewModels
 
                         if (pdfFile != null)
                         {
+                            //
+                            file.FileLength = pdfFile.FileLength;
+
+                            file.Encrypted = pdfFile.IsEncrypted();
+
+                            file.NumberOfPages = pdfFile.NumberOfPages;
+
                             // 
                             value = pdfFunctions.GetValue(pdfFile, "Author");
 

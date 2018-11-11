@@ -19,15 +19,14 @@ namespace PdfAuthorVerifier.Types
             set
             {
                 SetValue(() => Status, value);
-                NotifyPropertyChanged("StatusAsText");
-                //// Yes, we need this
-                //StatusAsText = value.ToString();
+                NotifyPropertyChanged(nameof(DisplayValue_Status));
             }
         }
 
         /// <summary>
+        ///     DisplayValue
         /// </summary>
-        public string StatusAsText
+        public string DisplayValue_Status
         {
             get
             {
@@ -61,7 +60,7 @@ namespace PdfAuthorVerifier.Types
                 }
                 return result;
             }
-            set { SetValue(() => StatusAsText, value); }
+            set { SetValue(() => DisplayValue_Status, value); }
         }
     }
 

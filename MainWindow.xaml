@@ -64,7 +64,13 @@
 
                 <DataGridTextColumn Header="Changed" CellStyle="{StaticResource ResourceKey=DataGridCellWithDate}" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=ModificationDate, StringFormat={StaticResource ResourceKey=DateFormat}}" MinWidth="75" Width="2*"/>
 
-                <DataGridTextColumn Header="Status" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=StatusAsText}" MinWidth="75" Width="1*"/>
+                <DataGridTextColumn Header="Pages" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=NumberOfPages}" MinWidth="75" Width="1*"/>
+
+                <DataGridTextColumn Header="File length in bytes" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=FileLength}" MinWidth="75" Width="1*"/>
+
+                <DataGridCheckBoxColumn Header="Encrypted" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=Encrypted}" MinWidth="75" Width="1*"/>
+
+                <DataGridTextColumn Header="Status" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=DisplayValue_Status}" MinWidth="75" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
 

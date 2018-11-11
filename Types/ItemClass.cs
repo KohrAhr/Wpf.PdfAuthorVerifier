@@ -33,6 +33,33 @@ namespace PdfAuthorVerifier.Types
         /// <summary>
         ///     Value from PDF
         /// </summary>
+        public int NumberOfPages
+        {
+            get { return GetValue(() => NumberOfPages); }
+            set { SetValue(() => NumberOfPages, value); }
+        }
+
+        /// <summary>
+        ///     Value from PDF
+        /// </summary>
+        public Int64 FileLength
+        {
+            get { return GetValue(() => FileLength); }
+            set { SetValue(() => FileLength, value); }
+        }
+
+        /// <summary>
+        ///     Value from PDF
+        /// </summary>
+        public bool Encrypted
+        {
+            get { return GetValue(() => Encrypted); }
+            set { SetValue(() => Encrypted, value); }
+        }
+
+        /// <summary>
+        ///     Value from PDF
+        /// </summary>
         public string Author
         {
             get { return GetValue(() => Author); }
