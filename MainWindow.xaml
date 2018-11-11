@@ -67,6 +67,9 @@
                 <DataGridTextColumn Header="Status" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=StatusAsText}" MinWidth="75" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
+        
+        <TextBox HorizontalAlignment="Left" Margin="10,308,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="135,308,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>
