@@ -69,7 +69,7 @@
         </DataGrid>
 
         <TextBox Margin="10,0,90,10" TextWrapping="Wrap" Text="{Binding Path=SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" VerticalAlignment="Bottom"/>
-        <Button Content="Search" Margin="0,0,10,10" Height="23" Command="{Binding Path=RunSearchCommand}" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom"/>
+        <Button Content="Search" Margin="0,0,10,10" Command="{Binding Path=RunSearchCommand}" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>
