@@ -49,16 +49,13 @@
         <Setter Property="Height" Value="70"/>
     </Style>
 
-    <Style x:Key="HeaderStyleCenteredRotated" TargetType="DataGridColumnHeader">
-        <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="Width" Value="70"/>
-        <Setter Property="LayoutTransform">
-            <Setter.Value>
+    <DataTemplate x:Key="HeaderStyleCenteredRotated">
+        <TextBlock Text="{Binding}" Margin="0,55,-40,-10" Width="70">
+            <TextBlock.RenderTransform>
                 <RotateTransform Angle="270" />
-            </Setter.Value>
-        </Setter>
-    </Style>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+    </DataTemplate>
 
     <system:String x:Key="DateFormat">dd/MMM/yyyy HH:mm:ss</system:String>
 
