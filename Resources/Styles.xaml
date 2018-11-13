@@ -49,6 +49,10 @@
         <Setter Property="Height" Value="70"/>
     </Style>
 
+    <DataTemplate x:Key="HeaderStyleCenteredTwoLine">
+        <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" Margin="-1,0,-5,0"/>
+    </DataTemplate>
+        
     <DataTemplate x:Key="HeaderStyleCenteredRotated">
         <TextBlock Text="{Binding}" Margin="0,55,-40,-10" Width="70">
             <TextBlock.RenderTransform>

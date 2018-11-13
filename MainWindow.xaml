@@ -66,10 +66,7 @@
 
                 <DataGridTextColumn Header="Pages" ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=NumberOfPages}" MinWidth="75" Width="1*"/>
 
-                <DataGridTextColumn ElementStyle="{StaticResource ResourceKey=TextBlockTrimmedCentered}" HeaderStyle="{StaticResource ResourceKey=HeaderStyleCentered}" Binding="{Binding Path=FileLength}" MinWidth="75" Width="1*">
-                    <DataGridTextColumn.Header>
-                        <TextBlock TextAlignment="Center" Text="File length in bytes" TextWrapping="Wrap"/>
-                    </DataGridTextColumn.Header>
+                <DataGridTextColumn Header="File length in bytes" HeaderTemplate="{StaticResource ResourceKey=HeaderStyleCenteredTwoLine}" Binding="{Binding Path=FileLength}" MinWidth="75" Width="1*">
                 </DataGridTextColumn>
 
                 <DataGridCheckBoxColumn Header="Encrypted" HeaderTemplate="{StaticResource ResourceKey=HeaderStyleCenteredRotated}" Binding="{Binding Path=Encrypted}" MinWidth="25" Width="25" MaxWidth="25"/>
